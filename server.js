@@ -7,6 +7,7 @@ const cockroach = require('./crud');
 const features = require('./features');
 const ejs = require("ejs");
 const _ = require("lodash");
+const { deleteNote } = require('./crud');
 
 const app = express();
 
@@ -41,6 +42,12 @@ app.get('/note/:id', async function(req, res) {
         id: note_id,
         body: note_body,
     });
+});
+
+app.get("/delete/:id", function(req, res) {
+    const note_id = req.params.id;
+    deleteNote(note_id);
+    res.redirect("/");
 });
 
 app.post("/update/:id", async function(req, res) {

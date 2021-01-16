@@ -80,7 +80,7 @@ module.exports = {
     },
 
     deleteNote: function(id) {
-        pool.query('DELETE FROM notes WHERE $1;', [id], (err, res) => {
+        pool.query('DELETE FROM notes WHERE id = $1;', [id], (err, res) => {
             if (err) {
                 err.stack;
             } else {

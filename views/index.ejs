@@ -44,7 +44,7 @@
                                 <%= note.text.substring(0, 128).replace(/<[^>]*>?/gm, ' ') %>
                             </p>
                             <a href="#" class="card-link">Card link</a>
-                            <a href="/delete/<%= note.id %>" class="card-link">Delete</a>
+                            <a href="/delete/<%= note.id %>" class="card-link" onclick="return confirm('Are you sure you want to delete this note?');">Delete</a>
                         </div>
                     </div>
                 </a>
