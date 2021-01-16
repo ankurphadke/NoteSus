@@ -27,7 +27,7 @@ app.get("/new_note", function(req, res) {
 });
 
 app.get("/new_note/audio", function(req, res) {
-    res.render("new_note", {});
+    res.render("audio.ejs", {});
 });
 
 app.get("/new_note/image", function(req, res) {
@@ -39,7 +39,12 @@ app.post("/submit", async function(req, res) {
     id = id + 1;
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
-    cockroach.newNote(id, text);
+    // Make API Calls
+    const categories = text;
+    const images = req.body.image_path;
+    const summary = text;
+    const entities = text;
+    cockroach.newNote(id, title, text, categories, images, summary, entities);
     res.redirect("/");
 });
 

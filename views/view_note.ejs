@@ -3,13 +3,22 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <button id="start-record-btn" class="btn btn-primary custom" title="Start Recording">Begin Recognition</button>
+            </li>
+
+            <li class="nav-item">
+                <button id="pause-record-btn" class="btn btn-primary custom" title="Pause Recording">End Recording</button>
+            </li>
+
+            <li class="nav-item">
                 <label class="btn btn-primary btn-file">
-                    Add Illustration <input type="file" style="display: none;">
+                    Add Illustration <input id="addImage" type="file" style="display: none;">
                 </label>
             </li>
 
             <li class="nav-item">
                 <form class="" method="POST" action="/update/<%= id %>">
+                    <input type="text" id="image_path" name="image_path" style="display: none;">
                     <textarea name="noteBody" id="noteBody" style="display: none;"></textarea>
                     <input id="submitNote" class="border-0 text-white btn bg-dark btn-file" type="submit" value="Save">
                 </form>
@@ -111,6 +120,14 @@
             let body = document.getElementById('noteBody');
             body.value = text;
             console.log(body.value);
+        });
+
+        document.getElementById("addImage").addEventListener('click', function() {
+            const path = document.getElementById("addImage").value;
+            let image_paths = document.getElementById("image_path");
+            if (image_paths.value == "") image_paths.value = image_paths;
+            else image_paths = image_paths + "," + path;
+            console.log(image_paths);
         });
     </script>
 

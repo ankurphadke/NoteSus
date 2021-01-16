@@ -67,3 +67,7 @@ body {
 .width-18 {
     width: 20rem;
 }
+
+.custom {
+    margin-left: 8px;
+}
