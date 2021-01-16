@@ -63,3 +63,7 @@ body {
 .nav-item .btn-primary {
     border-radius: 8px;
 }
+
+.width-18 {
+    width: 20rem;
+}
