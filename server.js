@@ -5,14 +5,22 @@ const request = require('request');
 const fs = require('fs');
 const cockroach = require('./crud');
 const features = require('./features');
+const ejs = require("ejs");
+const _ = require("lodash");
 
 const app = express();
 
+notes = [];
+
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/index.html");
+    //res.sendFile(__dirname + "/index.html");
+    res.render("index", {
+        notes: notes,
+    });
 });
 
 app.get("/new_note", function(req, res) {

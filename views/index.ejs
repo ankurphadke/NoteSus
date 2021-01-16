@@ -1,0 +1,64 @@
+<%- include("partials/header"); -%>
+    <div class="card-group">
+        <!-- Table of Contents-->
+        <div class="card w-25 min-h-100 m-3">
+
+            <div class="card-header">
+
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="true" href="#">Active</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-body">
+                <h3 class="card-title">Your Notes</h3>
+                <p class="card-text">Collections</p>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="deck w-75 m-3" id="deck">
+
+            <% notes.forEach( function(note) { %>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <%= note.date %>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= note.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%= note.body %>
+                        </p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+
+                <% }); %>
+
+        </div>
+    </div>
+
+    <%- include("partials/footer"); -%>
