@@ -49,7 +49,7 @@ module.exports = {
     },
 
     newNote: function(id, title, text, categories, images, summary, entities) {
-        const time = Math.round(new Date().getTime()/1000.0);
+        const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
         pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', 
         [id, title, text, categories, images, summary, entities, time], (err, res) => {
             if (err) {
@@ -72,7 +72,7 @@ module.exports = {
     },
 
     updateText: function(id, text) {
-        const time = Math.round(new Date().getTime()/1000.0);
+        const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
         pool.query('UPDATE notes SET text = $1, SET date = $2 WHERE id = $3;', [text, time, id], (err, res) => {
             if (err) {
                 err.stack;

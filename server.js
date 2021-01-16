@@ -39,7 +39,8 @@ app.post("/submit", async function(req, res) {
     id = id + 1;
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
-    cockroach.newNote(id, text);
+    const nlp = await features.NLP(text);
+    cockroach.newNote(id, title, text, nlp[0].categories, ' ', ' ', nlp[1].entities);
     res.redirect("/");
 });
 
