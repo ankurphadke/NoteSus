@@ -1,0 +1,32 @@
+{
+  "name": "banana-note",
+  "version": "1.0.0",
+  "description": "Redefining note-taking",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raghs2000/banana-note.git"
+  },
+  "author": "Raghav Saboo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raghs2000/banana-note/issues"
+  },
+  "homepage": "https://github.com/raghs2000/banana-note#readme",
+  "dependencies": {
+    "@google-cloud/language": "^4.2.1",
+    "@google-cloud/storage": "^5.7.2",
+    "@google-cloud/vision": "^2.3.0",
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1",
+    "request": "^2.88.2"
+  }
+}

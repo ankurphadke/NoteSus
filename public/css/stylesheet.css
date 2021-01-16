@@ -1,0 +1,56 @@
+html,
+body {
+    margin: 0 auto;
+    height: 100%;
+}
+
+.clear-header {
+    min-height: 50px;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.deck {
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.deck .card {
+    max-width: 16rem;
+    height: 15rem;
+    margin: 6px;
+}
+
+.min-h-100 {
+    min-height: 100%;
+}
+
+.ql-font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-editor .card-grid {
+    width: 20%;
+    float: right;
+}
+
+#editor {
+    height: 100%;
+    width: 80%;
+    float: left;
+    overflow: hidden;
+    position: fixed;
+    padding-bottom: 2rem;
+}
+
+.nav-item .btn-file {
+    margin-left: 8px;
+    border-radius: 5px;
+}
+
+.nav-item .btn-primary {
+    border-radius: 8px;
+}
