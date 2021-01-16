@@ -10,14 +10,13 @@ const _ = require("lodash");
 
 const app = express();
 
-notes = [];
-
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", function(req, res) {
-    //res.sendFile(__dirname + "/index.html");
+app.get("/", async function(req, res) {
+    const notes = await cockroach.getAll();
+    console.log(notes);
     res.render("index", {
         notes: notes,
     });

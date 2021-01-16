@@ -43,6 +43,11 @@ pool.connect(function(err, client, done) {
 
 module.exports = {
 
+    getAll: async function() {
+        const res = await pool.query('SELECT * FROM notes;');
+        return res.rows;
+    },
+
     newNote: function(id, text) {
         pool.query('INSERT INTO notes VALUES ($1, $2);', [id, text], (err, res) => {
             if (err) {
