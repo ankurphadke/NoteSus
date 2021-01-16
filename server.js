@@ -26,10 +26,6 @@ app.get("/new_note", function(req, res) {
     res.render("new_note", {});
 });
 
-app.get("/new_note/audio", function(req, res) {
-    res.render("audio.ejs", {});
-});
-
 app.get("/new_note/image", function(req, res) {
     res.render("new_note", {});
 });
