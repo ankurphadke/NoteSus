@@ -1,4 +1,5 @@
 <%- include("partials/header"); -%>
+
     <div class="card-group">
         <!-- Table of Contents-->
         <div class="card w-25 min-h-100 m-3">
@@ -39,22 +40,23 @@
         <div class="deck w-75 m-3" id="deck">
 
             <% notes.forEach( function(note) { %>
-
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <%= note.id %>
+                <a href="/note/<%= note.id %>">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <%= note.id %>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <!-- <%= note.title %> -->
+                            </h5>
+                            <p class="card-text">
+                                <%= note.text %>
+                            </p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <!-- <%= note.title %> -->
-                        </h5>
-                        <p class="card-text">
-                            <%= note.text %>
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
+                </a>
 
                 <% }); %>
 

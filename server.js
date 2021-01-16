@@ -22,7 +22,7 @@ app.get("/", async function(req, res) {
 });
 
 app.get("/new_note", function(req, res) {
-    res.sendFile(__dirname + "/view_note.html");
+    res.render("new_note", {});
 });
 
 app.post("/submit", async function(req, res) {
@@ -38,7 +38,7 @@ app.post("/submit", async function(req, res) {
 app.get('/note/:id', function(req, res) {
     const note_id = req.params.id;
     console.log(note_id);
-    res.sendFile(__dirname + "/view_note.html");
+    res.render("view_note", {});
 });
 
 app.listen(process.env.PORT || "3000", function() {
