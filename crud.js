@@ -48,8 +48,10 @@ module.exports = {
         return res.rows;
     },
 
-    newNote: function(id, text) {
-        pool.query('INSERT INTO notes VALUES ($1, $2);', [id, text], (err, res) => {
+    newNote: function(id, title, text, categories, images, summary, entities) {
+        const time = Math.round(new Date().getTime()/1000.0);
+        pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', 
+        [id, title, text, categories, images, summary, entities, time], (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {
@@ -70,7 +72,8 @@ module.exports = {
     },
 
     updateText: function(id, text) {
-        pool.query('UPDATE notes SET text = $1 WHERE id = $2;', [text, id], (err, res) => {
+        const time = Math.round(new Date().getTime()/1000.0);
+        pool.query('UPDATE notes SET text = $1, SET date = $2 WHERE id = $3;', [text, time, id], (err, res) => {
             if (err) {
                 err.stack;
             } else {
