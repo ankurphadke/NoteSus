@@ -93,8 +93,11 @@ module.exports = {
     },
 
     noteCount: async function() {
-        const res = await pool.query('SELECT * FROM notes;');
-        return res.rows.length;
+        var res = await pool.query('SELECT MAX(id) FROM notes');
+        res = res.rows[0];
+        console.log(res);
+        if (res.max == null) res = 0; else res = parseInt(res.max) + 1;
+        return res;
     },
 
     manualQuery: async function(query) {
