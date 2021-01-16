@@ -36,8 +36,7 @@
         </div>
 
         <div class="card-grid">
-            <div class="card">
-                <img class="card-img-top" src="/images/test.jpg" alt="Card image cap">
+            <div id="imageDisplay" class="card">
             </div>
         </div>
 
@@ -125,7 +124,7 @@
             let image_paths = document.getElementById("image_path");
             if (image_paths.value == "") image_paths.value = path;
             else image_paths.value = image_paths.value + "," + path;
-            console.log(image_paths.value);
+            document.getElementById('imageDisplay').innerHTML += "<img class=\"card-img-top\" src=\"" + path + "\"/>"; 
         });
 
         // Recording Audio

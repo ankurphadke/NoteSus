@@ -24,6 +24,11 @@ body {
     margin: 6px;
 }
 
+.deck a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .min-h-100 {
     min-height: 100%;
 }
