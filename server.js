@@ -26,6 +26,14 @@ app.get("/new_note", function(req, res) {
     res.render("new_note", {});
 });
 
+app.get("/new_note/audio", function(req, res) {
+    res.render("new_note", {});
+});
+
+app.get("/new_note/image", function(req, res) {
+    res.render("new_note", {});
+});
+
 app.post("/submit", async function(req, res) {
     let id = await cockroach.noteCount();
     id = id + 1;
