@@ -3,11 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <button id="start-record-btn" class="btn btn-primary custom" title="Start Recording">Begin Recognition</button>
-            </li>
-
-            <li class="nav-item">
-                <button id="pause-record-btn" class="btn btn-primary custom" title="Pause Recording">End Recording</button>
+                <button id="start-record-btn" class="btn btn-primary custom" title="Start Recording">Begin Recording</button>
             </li>
 
             <li class="nav-item">
@@ -115,6 +111,7 @@
         //    updateText(1, text);
         //});
 
+        // Note Submission
         document.getElementById("submitNote").addEventListener('click', function() {
             const text = editor.root.innerHTML;
             let body = document.getElementById('noteBody');
@@ -128,6 +125,42 @@
             if (image_paths.value == "") image_paths.value = image_paths;
             else image_paths = image_paths + "," + path;
             console.log(image_paths);
+        });
+
+        // Recording Audio
+        if (!('webkitSpeechRecognition' in window)) {
+            upgrade();
+        }
+
+        var recognizing;
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        reset();
+        recognition.onend = reset;
+
+        recognition.onresult = function(event) {
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    let caretPosition = editor.scroll.length() + 1;
+                    editor.insertText(caretPosition, event.results[i][0].transcript);
+                }
+            }
+        }
+
+        function reset() {
+            recognizing = false;
+            document.getElementById("start-record-btn").innerHTML = "Begin Recording";
+        }
+
+        document.getElementById("start-record-btn").addEventListener('click', function() {
+            if (recognizing) {
+                recognition.stop();
+                reset();
+            } else {
+                recognition.start();
+                recognizing = true;
+                document.getElementById("start-record-btn").innerHTML = "Stop Recording";
+            }
         });
     </script>
 
