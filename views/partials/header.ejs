@@ -8,6 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="jquery/jquery.js"></script>
+    <script type="text/javascript" src='js/bootstrap.min.js'></script>
 
     <!-- Custom styles CSS -->
     <link rel="stylesheet" href="/css/stylesheet.css">
@@ -47,10 +49,15 @@
                         <a class="nav-link" href="#">Features</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link btn-primary text-white" href="/new_note" aria-expanded="false">
-                                New Note
-                            </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn-primary text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            New Note
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/new_note">Begin Typing</a></li>
+                            <li><a class="dropdown-item" href="#">From Live Audio</a></li>
+                            <li><a class="dropdown-item" href="#">From Image</a></li>
+                        </ul>
                     </li>
                 </ul>
 
