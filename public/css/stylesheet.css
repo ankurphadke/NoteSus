@@ -71,3 +71,9 @@ body {
 .custom {
     margin-left: 8px;
 }
+
+#inputPath {
+    margin-left: 8px;
+    width: 250px;
+    background: transparent;
+}

@@ -7,14 +7,16 @@
             </li>
 
             <li class="nav-item">
-                <label class="btn btn-primary btn-file">
-                        Add Illustration <input type="file" style="display: none;">
-                    </label>
+                <input id="inputPath" type="file">
+                <button id="addImage" class="btn btn-primary btn-file">
+                    Add Illustration
+                </button>
             </li>
 
             <li class="nav-item">
                 <form class="" method="POST" action="/submit">
                     <input name="noteTitle" id="noteTitle" type="text" placeholder="Enter Title" class="bg-transparent">
+                    <input type="text" id="image_path" name="image_path" style="display: none;">
                     <textarea name="noteBody" id="noteBody" style="display: none;"> </textarea>
                     <input id="submitNote" class="border-0 text-white btn bg-dark btn-file" type="submit" value="Save">
                 </form>
@@ -111,6 +113,14 @@
             const text = editor.root.innerHTML;
             let body = document.getElementById('noteBody');
             body.value = text;
+        });
+
+        document.getElementById("addImage").addEventListener('click', function() {
+            const path = document.getElementById("inputPath").value;
+            let image_paths = document.getElementById("image_path");
+            if (image_paths.value == "") image_paths.value = path;
+            else image_paths.value = image_paths.value + "," + path;
+            console.log(image_paths.value);
         });
 
         // Recording Audio

@@ -7,9 +7,10 @@
             </li>
 
             <li class="nav-item">
-                <label class="btn btn-primary btn-file">
-                    Add Illustration <input id="addImage" type="file" style="display: none;">
-                </label>
+                <input id="inputPath" type="file">
+                <button id="addImage" class="btn btn-primary btn-file">
+                    Add Illustration
+                </button>
             </li>
 
             <li class="nav-item">
@@ -120,11 +121,11 @@
         });
 
         document.getElementById("addImage").addEventListener('click', function() {
-            const path = document.getElementById("addImage").value;
+            const path = document.getElementById("inputPath").value;
             let image_paths = document.getElementById("image_path");
-            if (image_paths.value == "") image_paths.value = image_paths;
-            else image_paths = image_paths + "," + path;
-            console.log(image_paths);
+            if (image_paths.value == "") image_paths.value = path;
+            else image_paths.value = image_paths.value + "," + path;
+            console.log(image_paths.value);
         });
 
         // Recording Audio

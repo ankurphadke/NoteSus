@@ -62,6 +62,6 @@ app.post("/update/:id", async function(req, res) {
     res.redirect("/");
 });
 
-app.listen("3000",'192.168.0.63', function() {
+app.listen("3000", function() {
     console.log("Server is running on port 3000");
 });
