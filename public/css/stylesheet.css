@@ -37,6 +37,15 @@ body {
     float: right;
 }
 
+#noteTitle {
+    border: 0;
+    outline: 0;
+    border-bottom: solid black 1px;
+    height: 32px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
 #editor {
     height: 100%;
     width: 80%;

@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async function(req, res) {
     const notes = await cockroach.getAll();
-    console.log(notes);
     res.render("index", {
         notes: notes,
     });
@@ -29,6 +28,8 @@ app.get("/new_note", function(req, res) {
 app.post("/submit", async function(req, res) {
     let id = await cockroach.noteCount();
     id = id + 1;
+    const title = req.body.noteTitle;
+    console.log(title);
     const text = req.body.noteBody;
     cockroach.newNote(id, text);
     res.redirect("/");
