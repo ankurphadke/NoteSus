@@ -39,12 +39,8 @@ app.post("/submit", async function(req, res) {
     id = id + 1;
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
-    // Make API Calls
-    const categories = text;
-    const images = req.body.image_path;
-    const summary = text;
-    const entities = text;
-    cockroach.newNote(id, title, text, categories, images, summary, entities);
+    const nlp = await features.NLP(text);
+    cockroach.newNote(id, title, text, nlp[0].categories, ' ', ' ', nlp[1].entities);
     res.redirect("/");
 });
 
