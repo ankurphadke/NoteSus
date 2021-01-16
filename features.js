@@ -40,4 +40,4 @@ function imageToText(path) {
         NLP,
     ]);
 }
-imageToText("h5.jpg");
+// imageToText("h5.jpg");

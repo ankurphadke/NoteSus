@@ -27,7 +27,8 @@ pool.connect(function(err, client, done) {
     }
     async.waterfall([
             function(next) {
-
+                // Create the 'notes' table.
+                // pool.query('CREATE TABLE IF NOT EXISTS notes.notes (id INT PRIMARY KEY, text VARCHAR);', next);
             },
         ],
         function(err, results) {
