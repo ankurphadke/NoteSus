@@ -7,7 +7,7 @@ const cockroach = require('./crud');
 const features = require('./features');
 const ejs = require("ejs");
 const _ = require("lodash");
-const { deleteNote, manualQuery } = require('./crud');
+const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
 
 const app = express();
 
@@ -31,8 +31,7 @@ app.get("/new_note/image", function(req, res) {
 });
 
 app.post("/submit", async function(req, res) {
-    let id = await manualQuery('SELECT MAX(id) from notes');
-    id = parseInt(id.rows[0].max) + 1;
+    let id = await noteCount();
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
     const nlp = await features.NLP(text);
@@ -62,6 +61,6 @@ app.post("/update/:id", async function(req, res) {
     res.redirect("/");
 });
 
-app.listen("3000", function() {
+app.listen("3000", '192.168.0.113', function() {
     console.log("Server is running on port 3000");
 });
