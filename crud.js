@@ -73,9 +73,9 @@ module.exports = {
 
     updateText: function(id, text) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        pool.query('UPDATE notes SET text = $1, SET date = $2 WHERE id = $3;', [text, time, id], (err, res) => {
+        pool.query('UPDATE notes SET text = $1, date = $2 WHERE id = $3;', [text, time, id], (err, res) => {
             if (err) {
-                err.stack;
+                console.log(err.stack);
             } else {
                 console.log("Successfully Updated!");
             }
