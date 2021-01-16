@@ -38,7 +38,6 @@ function imageToText(path) {
     async.waterfall([
         async.apply(detectFulltext, path),
         NLP,
-    ], function(err, result) {
-        console.log('error');
-    });
+    ]);
 }
+imageToText("h5.jpg");
