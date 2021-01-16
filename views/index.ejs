@@ -8,15 +8,7 @@
 
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="true" href="#">Active</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link active" aria-current="true" href="#">All</a>
                     </li>
                 </ul>
             </div>
@@ -26,12 +18,11 @@
                 <p class="card-text">Collections</p>
 
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <% notes.forEach( function(note) { %>
+                        <li class="list-group-item">
+                            <%= note.title %>
+                        </li>
+                        <% }); %>
                 </ul>
             </div>
 
@@ -47,13 +38,13 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <!-- <%= note.title %> -->
+                                <%= note.title %>
                             </h5>
                             <p class="card-text">
-                                <%= note.text %>
+                                <%= note.text.substring(0, 128).replace(/<[^>]*>?/gm, ' ') %>
                             </p>
                             <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                            <a href="/delete/<%= note.id %>" class="card-link">Delete</a>
                         </div>
                     </div>
                 </a>

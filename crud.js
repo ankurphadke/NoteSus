@@ -60,7 +60,13 @@ module.exports = {
 
     getNote: async function(id) {
         const res = await pool.query('SELECT * FROM notes WHERE id = $1;', [id]);
+        console.log(res.rows[0]);
         return res.rows[0];
+    },
+
+    getText: async function(id) {
+        const res = await pool.query('SELECT * FROM notes WHERE id = $1;', [id]);
+        return res.rows[0].text;
     },
 
     updateText: function(id, text) {
@@ -68,7 +74,7 @@ module.exports = {
             if (err) {
                 err.stack;
             } else {
-                getNote(id);
+                console.log("Successfully Updated!");
             }
         });
     },

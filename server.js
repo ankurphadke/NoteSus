@@ -29,16 +29,25 @@ app.post("/submit", async function(req, res) {
     let id = await cockroach.noteCount();
     id = id + 1;
     const title = req.body.noteTitle;
-    console.log(title);
     const text = req.body.noteBody;
     cockroach.newNote(id, text);
     res.redirect("/");
 });
 
-app.get('/note/:id', function(req, res) {
+app.get('/note/:id', async function(req, res) {
     const note_id = req.params.id;
-    console.log(note_id);
-    res.render("view_note", {});
+    const note_body = await cockroach.getText(note_id);
+    res.render("view_note", {
+        id: note_id,
+        body: note_body,
+    });
+});
+
+app.post("/update/:id", async function(req, res) {
+    const id = req.params.id;
+    const text = req.body.noteBody;
+    cockroach.updateText(id, text);
+    res.redirect("/");
 });
 
 app.listen(process.env.PORT || "3000", function() {

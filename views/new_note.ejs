@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <form class="" method="POST" action="/submit">
                     <input name="noteTitle" id="noteTitle" type="text" placeholder="Enter Title" class="bg-transparent">
-                    <input name="noteBody" id="noteBody" type="text" style="display: none;">
+                    <textarea name="noteBody" id="noteBody" style="display: none;"> </textarea>
                     <input id="submitNote" class="border-0 text-white btn bg-dark btn-file" type="submit" value="Save">
                 </form>
             </li>
@@ -109,7 +109,7 @@
         //});
 
         document.getElementById("submitNote").addEventListener('click', function() {
-            const text = editor.getText();
+            const text = editor.root.innerHTML;
             let body = document.getElementById('noteBody');
             body.value = text;
         });

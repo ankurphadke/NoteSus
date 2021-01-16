@@ -15,8 +15,8 @@
             </li>
 
             <li class="nav-item">
-                <form class="" method="POST" action="/submit">
-                    <input name="noteBody" id="noteBody" type="text" style="display: none;">
+                <form class="" method="POST" action="/update/<%= id %>">
+                    <textarea name="noteBody" id="noteBody" style="display: none;"></textarea>
                     <input id="submitNote" class="border-0 text-white btn bg-dark btn-file" type="submit" value="Save">
                 </form>
             </li>
@@ -25,7 +25,9 @@
 
     <!-- Text Editor -->
     <div class="text-editor">
-        <div id="editor"></div>
+        <div id="editor">
+            <%- body %>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -105,9 +107,10 @@
         //});
 
         document.getElementById("submitNote").addEventListener('click', function() {
-            const text = editor.getText();
+            const text = editor.root.innerHTML;
             let body = document.getElementById('noteBody');
             body.value = text;
+            console.log(body.value);
         });
     </script>
 
