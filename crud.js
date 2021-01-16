@@ -97,6 +97,11 @@ module.exports = {
         return res.rows.length;
     },
 
+    manualQuery: async function(query) {
+        const res = await pool.query(query);
+        return res;
+    },
+
     endSession: function() {
         pool.end();
     }
