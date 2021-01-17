@@ -11,6 +11,7 @@ const _ = require("lodash");
 const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
 
 const app = express();
+const categories = ["All"];
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -18,8 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async function(req, res) {
     const notes = await cockroach.getAll();
+    const active = "All";
     res.render("index", {
         notes: notes,
+        categories: categories,
+        active: active,
+        empty: "",
     });
 });
 
@@ -35,12 +40,16 @@ app.post("/submit", async function(req, res) {
     const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
-    console.log('Summary', smry);
-    console.log(nlp[0].categories);
-    var categories;
-    if (nlp[0].categories.length <= 0) categories = '';
-    else categories = nlp[0].categories[0].name.replace(/\//g, ',').slice(1);
-    cockroach.newNote(id, title, text, categories, images, smry.output, nlp[1].entities);
+    let categ;
+    if (nlp[0].categories.length <= 0) categ = '';
+    else {
+        categories.concat(nlp[0].categories[0].name.split('/').slice(1));
+        console.log(categories);
+        categ = nlp[0].categories[0].name.split(/\//g, ',').slice(1);
+        console.log(categ);
+    }
+
+    cockroach.newNote(id, title, text, categ, images, smry.output, nlp[1].entities);
     res.redirect("/");
 });
 
@@ -88,9 +97,27 @@ app.get("/delete/:id", function(req, res) {
 app.post("/update/:id", async function(req, res) {
     const id = req.params.id;
     const text = req.body.noteBody;
+    const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
+    const smry = await summary.summarize(textNoHTML);
     const images = req.body.image_path;
-    cockroach.updateText(id, text, images);
+    cockroach.updateText(id, text, images, smry);
     res.redirect("/");
+});
+
+app.get("/categories/all", function(req, res) {
+    res.redirect("/");
+});
+
+app.get("/categories/:category", async function(req, res) {
+    const category = req.params.category;
+    const notes = await cockroach.getCategory(category);
+    const active = category;
+    res.render("index", {
+        notes: notes,
+        categories: categories,
+        active: active,
+        empty: "",
+    });
 });
 
 app.listen("3000", function() {

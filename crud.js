@@ -48,6 +48,11 @@ module.exports = {
         return res.rows;
     },
 
+    getCategory: async function(category) {
+        const res = await pool.query("SELECT * FROM notes WHERE categories like '%" + category + "%';");
+        return res.rows;
+    },
+
     newNote: function(id, title, text, categories, images, summary, entities) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
         pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', [id, title, text, categories, images, summary, entities, time], (err, res) => {
@@ -69,9 +74,9 @@ module.exports = {
         return res.rows[0].text;
     },
 
-    updateText: function(id, text, images) {
+    updateText: function(id, text, images, summary) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        pool.query('UPDATE notes SET text = $1, date = $2, images = $3 WHERE id = $4;', [text, time, images, id], (err, res) => {
+        pool.query('UPDATE notes SET text = $1, date = $2, images = $3, summary = $4 WHERE id = $5;', [text, time, images, summary, id], (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {

@@ -7,9 +7,15 @@
             <div class="card-header">
 
                 <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="true" href="#">All</a>
-                    </li>
+
+                    <% categories.forEach( function(category) { %>
+                        <li class="nav-item">
+                            <a class="nav-link<%= category === active ? ' active' : empty %>" aria-current="true " href="/categories/<%- category %>">
+                                <%- category %>
+                            </a>
+                        </li>
+                        <% }); %>
+
                 </ul>
             </div>
 
@@ -44,7 +50,7 @@
                                 <%= note.text.substring(0, 128).replace(/<[^>]*>?/gm, ' ') %>
                             </p>
                             <a href="/note/<%= note.id %>" class="card-link">Open</a>
-                            <a href="/delete/<%= note.id %>" class="card-link" id="delete" onclick="return confirm('Are you sure you want to delete this note?');">Delete</a>
+                            <a href="/delete/<%= note.id %>" class="card-link" id="delete" onclick="return confirm('Are you sure you want to delete this note? ');">Delete</a>
                         </div>
 
                     </div>
