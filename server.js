@@ -54,7 +54,12 @@ app.post("/submit", async function(req, res) {
         categ = nlp[0].categories[0].name;
     }
 
-    cockroach.newNote(id, title, text, categ, images, smry.output, nlp[1].entities);
+    let links = "";
+    nlp[1].entities.forEach(function(entry) {
+        if ("wikipedia_url" in entry.metadata) links += entry.metadata.wikipedia_url + ",";
+    });
+
+    cockroach.newNote(id, title, text, categ, images, smry.output, links);
     res.redirect("/");
 });
 
