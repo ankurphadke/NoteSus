@@ -138,9 +138,12 @@ app.get("/search_results/:query", async function(req, res) {
     const query = req.params.query;
     // Submit Query to Database Here
     notes = await cockroach.searchText(query);
+    let message = "";
+    if (notes.length === 0) message = '<h4 style="margin-left: 30px; margin-top: 20px;">No results found!"</h4>';
     res.render("search_result", {
         query: query,
         notes: notes,
+        message: message,
     })
 });
 
