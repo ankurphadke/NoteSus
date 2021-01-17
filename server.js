@@ -35,19 +35,25 @@ app.post("/submit", async function(req, res) {
     let id = await noteCount();
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
+    const images = req.body.image_path;
     const nlp = await features.NLP(text);
     const smry = summary.summarize(text);
     console.log('Summary', smry);
-    cockroach.newNote(id, title, text, nlp[0].categories, '', smry, nlp[1].entities);
+    cockroach.newNote(id, title, text, nlp[0].categories, images, smry, nlp[1].entities);
     res.redirect("/");
 });
 
 app.get('/note/:id', async function(req, res) {
     const note_id = req.params.id;
-    const note_body = await cockroach.getText(note_id);
+    const note = await cockroach.getNote(note_id);
+    const body = note.text;
+    const images = note.images.split(",");
+    const time = note.date;
     res.render("view_note", {
         id: note_id,
-        body: note_body,
+        body: body,
+        images: images,
+        time: time,
     });
 });
 

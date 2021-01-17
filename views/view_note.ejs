@@ -7,7 +7,6 @@
             </li>
 
             <li class="nav-item">
-                <input id="inputPath" type="file">
                 <button id="addImage" class="btn btn-primary btn-file">
                     Add Illustration
                 </button>
@@ -15,7 +14,7 @@
 
             <li class="nav-item">
                 <form class="" method="POST" action="/update/<%= id %>">
-                    <input type="text" id="image_path" name="image_path" style="display: none;">
+                    <textarea id="image_path" name="image_path" style="display: none;"><%- images %></textarea>
                     <textarea name="noteBody" id="noteBody" style="display: none;"></textarea>
                     <input id="submitNote" class="border-0 text-white btn bg-dark btn-file" type="submit" value="Save">
                 </form>
@@ -23,7 +22,7 @@
 
             <li class="nav-item">
                 <label class="btn">
-                    <span style="font-style: italic; font-weight: 300; margin-left: 10px;">Last Updated on August</span>
+                    <span style="font-style: italic; font-weight: 300; margin-left: 10px;">Last Updated on <%- time.toLocaleString() %></span>
                 </label>
             </li>
         </ul>
@@ -37,6 +36,9 @@
 
         <div class="card-grid">
             <div id="imageDisplay" class="card">
+                <% images.forEach( function(path) { %>
+                    <img class="card-img-top" src="<%- path %>">
+                    <% }); %>
             </div>
         </div>
 
@@ -114,17 +116,27 @@
         // Note Submission
         document.getElementById("submitNote").addEventListener('click', function() {
             const text = editor.root.innerHTML;
+            let images = document.getElementById('image_path');
             let body = document.getElementById('noteBody');
             body.value = text;
             console.log(body.value);
         });
 
+        let myWidget = cloudinary.createUploadWidget({
+            cloudName: 'notesus',
+            uploadPreset: 'ml_default'
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                const path = result.info.url;
+                let image_paths = document.getElementById("image_path");
+                if (image_paths.value == "") image_paths.value = path;
+                else image_paths.value = image_paths.value + "," + path;
+                document.getElementById('imageDisplay').innerHTML += "<img class=\"card-img-top\" src=\"" + path + "\"/>";
+            }
+        });
+
         document.getElementById("addImage").addEventListener('click', function() {
-            const path = document.getElementById("inputPath").value;
-            let image_paths = document.getElementById("image_path");
-            if (image_paths.value == "") image_paths.value = path;
-            else image_paths.value = image_paths.value + "," + path;
-            document.getElementById('imageDisplay').innerHTML += "<img class=\"card-img-top\" src=\"" + path + "\"/>";
+            myWidget.open();
         });
 
         // Recording Audio
