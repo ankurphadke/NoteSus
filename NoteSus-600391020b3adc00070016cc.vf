@@ -1,0 +1,856 @@
+{
+  "project": {
+    "_id": "60039102ddbaf8001c209653",
+    "name": "NoteSus",
+    "teamID": "ewjWBppkbR",
+    "devVersion": "600391020b3adc00070016cc",
+    "platform": "google",
+    "platformData": {
+      "invocationName": "template project google"
+    },
+    "members": [],
+    "image": "",
+    "creatorID": 53776
+  },
+  "version": {
+    "_id": "600391020b3adc00070016cc",
+    "name": "Initial Version",
+    "projectID": "60039102ddbaf8001c209653",
+    "variables": [
+      "title",
+      "speech",
+      "speeech"
+    ],
+    "platformData": {
+      "slots": [
+        {
+          "key": "hndg30sv",
+          "name": "title",
+          "type": {
+            "value": "Custom"
+          },
+          "color": "#A086C4",
+          "inputs": [
+            "demo"
+          ]
+        }
+      ],
+      "intents": [
+        {
+          "key": "w4p30ht",
+          "name": "read_note",
+          "slots": [],
+          "inputs": [
+            {
+              "text": "read me a note",
+              "slots": []
+            },
+            {
+              "text": "read note",
+              "slots": []
+            },
+            {
+              "text": "read a note",
+              "slots": []
+            }
+          ]
+        },
+        {
+          "key": "p4v30f9",
+          "name": "summarize_note",
+          "slots": [],
+          "inputs": [
+            {
+              "text": "summmarize me a note",
+              "slots": []
+            },
+            {
+              "text": "summarize note",
+              "slots": []
+            },
+            {
+              "text": "summarize a note",
+              "slots": []
+            }
+          ]
+        },
+        {
+          "key": "pj1230v8",
+          "name": "email_note",
+          "slots": [],
+          "inputs": [
+            {
+              "text": "email note",
+              "slots": []
+            },
+            {
+              "text": "email a note",
+              "slots": []
+            },
+            {
+              "text": "email me a note",
+              "slots": []
+            }
+          ]
+        },
+        {
+          "key": "f32m30bq",
+          "name": "yes",
+          "slots": [],
+          "inputs": [
+            {
+              "text": "yeah",
+              "slots": []
+            },
+            {
+              "text": "yep",
+              "slots": []
+            },
+            {
+              "text": "yup",
+              "slots": []
+            },
+            {
+              "text": "yah",
+              "slots": []
+            },
+            {
+              "text": "yes",
+              "slots": []
+            }
+          ]
+        },
+        {
+          "key": "jx3e300r",
+          "name": "no",
+          "slots": [],
+          "inputs": [
+            {
+              "text": "nuh",
+              "slots": []
+            },
+            {
+              "text": "nope",
+              "slots": []
+            },
+            {
+              "text": "nah",
+              "slots": []
+            },
+            {
+              "text": "no",
+              "slots": []
+            }
+          ]
+        },
+        {
+          "key": "znd330jh",
+          "name": "read_note_title",
+          "slots": [],
+          "inputs": []
+        },
+        {
+          "key": "ofda30p2",
+          "name": "readnotetitle",
+          "slots": [
+            {
+              "id": "hndg30sv",
+              "dialog": {
+                "prompt": [
+                  {
+                    "text": "",
+                    "slots": []
+                  }
+                ],
+                "confirm": [
+                  {
+                    "text": "",
+                    "slots": []
+                  }
+                ],
+                "utterances": [],
+                "confirmEnabled": false
+              },
+              "required": false
+            }
+          ],
+          "inputs": [
+            {
+              "text": "read note with title {{[title].hndg30sv}} ",
+              "slots": [
+                "hndg30sv"
+              ]
+            }
+          ]
+        }
+      ],
+      "settings": {
+        "restart": true,
+        "repeat": 100
+      },
+      "publishing": {
+        "voice": "",
+        "locales": [
+          "en-US",
+          "en-AU",
+          "en-CA",
+          "en-GB",
+          "en-IN",
+          "en-BE",
+          "en-SG"
+        ],
+        "displayName": "NoteSus",
+        "developerName": "",
+        "pronunciation": "NoteSus",
+        "invocationName": "",
+        "smallLogoImage": "",
+        "developerEmail": "",
+        "fullDescription": "",
+        "largeBannerImage": "",
+        "privacyPolicyUrl": "",
+        "shortDescription": "",
+        "termsOfServiceUrl": "",
+        "sampleInvocations": [
+          "open NoteSus",
+          "start NoteSus",
+          "launch NoteSus"
+        ]
+      },
+      "status": {
+        "stage": "DEV"
+      },
+      "platform": "google"
+    },
+    "rootDiagramID": "600391020b3adc00070016cd",
+    "creatorID": 53776
+  },
+  "diagrams": {
+    "600391020b3adc00070016cd": {
+      "_id": "600391020b3adc00070016cd",
+      "offsetX": 209.72802217658466,
+      "offsetY": 42.93495291480477,
+      "zoom": 36.24262699485551,
+      "nodes": {
+        "5f9f562f11b31520c2a2a6eb": {
+          "nodeID": "5f9f562f11b31520c2a2a6eb",
+          "type": "start",
+          "coords": [
+            417.7276707342893,
+            207.90814291001618
+          ],
+          "data": {
+            "name": "Start",
+            "color": "standard",
+            "ports": [
+              {
+                "type": "",
+                "target": "6003913f994f37c8ee37d60a",
+                "id": "60039103994f37c8ee37d602"
+              }
+            ],
+            "steps": []
+          }
+        },
+        "6003913f994f37c8ee37d607": {
+          "nodeID": "6003913f994f37c8ee37d607",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Hey crew mate!"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "60039159994f37c8ee37d614",
+                "id": "6003913f994f37c8ee37d609"
+              }
+            ]
+          }
+        },
+        "6003913f994f37c8ee37d60a": {
+          "nodeID": "6003913f994f37c8ee37d60a",
+          "type": "block",
+          "coords": [
+            407.12225137056606,
+            396.54387926605204
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6003913f994f37c8ee37d607"
+            ]
+          }
+        },
+        "60039159994f37c8ee37d611": {
+          "nodeID": "60039159994f37c8ee37d611",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "What can I do for you?"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "600391d1994f37c8ee37d61c",
+                "id": "60039159994f37c8ee37d613"
+              }
+            ]
+          }
+        },
+        "60039159994f37c8ee37d614": {
+          "nodeID": "60039159994f37c8ee37d614",
+          "type": "block",
+          "coords": [
+            863.449724883958,
+            122.61223968612609
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "60039159994f37c8ee37d611",
+              "600391d1994f37c8ee37d61c"
+            ]
+          }
+        },
+        "600391d1994f37c8ee37d61c": {
+          "nodeID": "600391d1994f37c8ee37d61c",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "else": {
+              "type": "path",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "default",
+                  "content": ""
+                }
+              ]
+            },
+            "choices": [
+              {
+                "intent": "w4p30ht",
+                "mappings": []
+              },
+              {
+                "intent": "p4v30f9",
+                "mappings": []
+              },
+              {
+                "intent": "ofda30p2",
+                "mappings": []
+              }
+            ],
+            "reprompt": null,
+            "ports": [
+              {
+                "type": "",
+                "target": "600392b1994f37c8ee37d629",
+                "id": "600391d1994f37c8ee37d61f"
+              },
+              {
+                "type": "",
+                "target": "60039308994f37c8ee37d63a",
+                "id": "600391d1994f37c8ee37d620"
+              },
+              {
+                "type": 2,
+                "target": "6003932e994f37c8ee37d641",
+                "id": "600391fc994f37c8ee37d624"
+              },
+              {
+                "type": 3,
+                "target": "600393e2994f37c8ee37d66e",
+                "id": "6003abd1994f37c8ee37d760"
+              }
+            ]
+          }
+        },
+        "600392b1994f37c8ee37d629": {
+          "nodeID": "600392b1994f37c8ee37d629",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Sorry that seems suss."
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "60039159994f37c8ee37d614",
+                "id": "600392b1994f37c8ee37d62b"
+              }
+            ]
+          }
+        },
+        "600392b1994f37c8ee37d62c": {
+          "nodeID": "600392b1994f37c8ee37d62c",
+          "type": "block",
+          "coords": [
+            861.9343137476301,
+            509.81143400605015
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "600392b1994f37c8ee37d629"
+            ]
+          }
+        },
+        "60039308994f37c8ee37d637": {
+          "nodeID": "60039308994f37c8ee37d637",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Okay, what is the title of the note you would like me to read?"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "60039380994f37c8ee37d656",
+                "id": "60039308994f37c8ee37d639"
+              }
+            ]
+          }
+        },
+        "60039308994f37c8ee37d63a": {
+          "nodeID": "60039308994f37c8ee37d63a",
+          "type": "block",
+          "coords": [
+            1378.2956127511661,
+            40.50789012085491
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "60039308994f37c8ee37d637",
+              "60039380994f37c8ee37d656",
+              "600393e2994f37c8ee37d66e"
+            ]
+          }
+        },
+        "6003932e994f37c8ee37d641": {
+          "nodeID": "6003932e994f37c8ee37d641",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Okay, what is the title of the note you would like me to summarize?"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "60039395994f37c8ee37d65e",
+                "id": "6003932e994f37c8ee37d643"
+              }
+            ]
+          }
+        },
+        "6003932e994f37c8ee37d644": {
+          "nodeID": "6003932e994f37c8ee37d644",
+          "type": "block",
+          "coords": [
+            1376.8024431428055,
+            432.98195089303
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6003932e994f37c8ee37d641",
+              "60039395994f37c8ee37d65e",
+              "600393e4994f37c8ee37d678"
+            ]
+          }
+        },
+        "60039380994f37c8ee37d656": {
+          "nodeID": "60039380994f37c8ee37d656",
+          "type": "capture",
+          "data": {
+            "slot": "Custom",
+            "variable": "title",
+            "reprompt": null,
+            "slotInputs": [],
+            "ports": [
+              {
+                "type": "",
+                "target": "600393e2994f37c8ee37d66e",
+                "id": "60039380994f37c8ee37d659"
+              }
+            ]
+          }
+        },
+        "60039395994f37c8ee37d65e": {
+          "nodeID": "60039395994f37c8ee37d65e",
+          "type": "capture",
+          "data": {
+            "slot": "Custom",
+            "variable": "title",
+            "reprompt": null,
+            "slotInputs": [],
+            "ports": [
+              {
+                "type": "",
+                "target": "600393e4994f37c8ee37d678",
+                "id": "60039395994f37c8ee37d661"
+              }
+            ]
+          }
+        },
+        "600393e2994f37c8ee37d66e": {
+          "nodeID": "600393e2994f37c8ee37d66e",
+          "type": "api",
+          "data": {
+            "url": "http://727f92fa7f9d.ngrok.io/notebytitle/{{[title].title}}",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "GET",
+            "headers": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "content": "",
+            "mappings": [
+              {
+                "path": "response.body",
+                "var": "speech"
+              }
+            ],
+            "bodyType": "formData",
+            "selectedAction": "Make a GET Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "6003940b994f37c8ee37d68e",
+                "id": "600393e2994f37c8ee37d671"
+              },
+              {
+                "type": "fail",
+                "target": "6003958d994f37c8ee37d6db",
+                "id": "600393e2994f37c8ee37d672"
+              }
+            ]
+          }
+        },
+        "600393e4994f37c8ee37d678": {
+          "nodeID": "600393e4994f37c8ee37d678",
+          "type": "api",
+          "data": {
+            "url": "http://727f92fa7f9d.ngrok.io/summary/{{[title].title}}",
+            "body": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "params": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "method": "GET",
+            "headers": [
+              {
+                "key": "",
+                "val": ""
+              }
+            ],
+            "content": "",
+            "mappings": [
+              {
+                "path": "response.body",
+                "var": "speech"
+              }
+            ],
+            "bodyType": "formData",
+            "selectedAction": "Make a GET Request",
+            "selectedIntegration": "Custom API",
+            "ports": [
+              {
+                "type": "",
+                "target": "6003940b994f37c8ee37d68e",
+                "id": "600393e4994f37c8ee37d67b"
+              },
+              {
+                "type": "fail",
+                "target": "600395e5994f37c8ee37d6e8",
+                "id": "600393e4994f37c8ee37d67c"
+              }
+            ]
+          }
+        },
+        "6003940b994f37c8ee37d68b": {
+          "nodeID": "6003940b994f37c8ee37d68b",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "{{[speech].speech}} "
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "600394c2994f37c8ee37d6af",
+                "id": "6003940b994f37c8ee37d68d"
+              }
+            ]
+          }
+        },
+        "6003940b994f37c8ee37d68e": {
+          "nodeID": "6003940b994f37c8ee37d68e",
+          "type": "block",
+          "coords": [
+            1844.7042794876372,
+            500.9391739399065
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6003b1eb532ca30703544f4e",
+              "6003940b994f37c8ee37d68b"
+            ]
+          }
+        },
+        "600394c2994f37c8ee37d6ac": {
+          "nodeID": "600394c2994f37c8ee37d6ac",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Do you need anything else?"
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "600394d2994f37c8ee37d6b7",
+                "id": "600394c2994f37c8ee37d6ae"
+              }
+            ]
+          }
+        },
+        "600394c2994f37c8ee37d6af": {
+          "nodeID": "600394c2994f37c8ee37d6af",
+          "type": "block",
+          "coords": [
+            2290.0923140429095,
+            581.2368688490168
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "600394c2994f37c8ee37d6ac",
+              "600394d2994f37c8ee37d6b7"
+            ]
+          }
+        },
+        "600394d2994f37c8ee37d6b7": {
+          "nodeID": "600394d2994f37c8ee37d6b7",
+          "type": "interaction",
+          "data": {
+            "name": "Choice",
+            "else": {
+              "type": "reprompt",
+              "randomize": false,
+              "reprompts": [
+                {
+                  "voice": "default",
+                  "content": ""
+                }
+              ]
+            },
+            "choices": [
+              {
+                "intent": "f32m30bq",
+                "mappings": []
+              },
+              {
+                "intent": "jx3e300r",
+                "mappings": []
+              }
+            ],
+            "reprompt": null,
+            "ports": [
+              {
+                "type": "",
+                "target": null,
+                "id": "600394d2994f37c8ee37d6ba"
+              },
+              {
+                "type": "",
+                "target": "60039159994f37c8ee37d614",
+                "id": "600394d2994f37c8ee37d6bb"
+              },
+              {
+                "type": 2,
+                "target": "60039541994f37c8ee37d6cf",
+                "id": "600394fe994f37c8ee37d6ca"
+              }
+            ]
+          }
+        },
+        "60039541994f37c8ee37d6cf": {
+          "nodeID": "60039541994f37c8ee37d6cf",
+          "type": "exit",
+          "data": {
+            "ports": []
+          }
+        },
+        "60039541994f37c8ee37d6d1": {
+          "nodeID": "60039541994f37c8ee37d6d1",
+          "type": "block",
+          "coords": [
+            2288.3036454210132,
+            849.5420864621123
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "60039541994f37c8ee37d6cf"
+            ]
+          }
+        },
+        "6003958d994f37c8ee37d6d8": {
+          "nodeID": "6003958d994f37c8ee37d6d8",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "There is no note with that title."
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "60039308994f37c8ee37d637",
+                "id": "6003958d994f37c8ee37d6da"
+              }
+            ]
+          }
+        },
+        "6003958d994f37c8ee37d6db": {
+          "nodeID": "6003958d994f37c8ee37d6db",
+          "type": "block",
+          "coords": [
+            1847.7793911833219,
+            343.8242022794198
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "6003958d994f37c8ee37d6d8"
+            ]
+          }
+        },
+        "600395e5994f37c8ee37d6e8": {
+          "nodeID": "600395e5994f37c8ee37d6e8",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "There is no note with that title."
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6003932e994f37c8ee37d641",
+                "id": "600395e5994f37c8ee37d6e9"
+              }
+            ]
+          }
+        },
+        "600395e5994f37c8ee37d6e6": {
+          "nodeID": "600395e5994f37c8ee37d6e6",
+          "type": "block",
+          "coords": [
+            1847.7793911833203,
+            691.0734361399656
+          ],
+          "data": {
+            "name": "Block",
+            "color": "standard",
+            "steps": [
+              "600395e5994f37c8ee37d6e8"
+            ]
+          }
+        },
+        "6003b1eb532ca30703544f4e": {
+          "nodeID": "6003b1eb532ca30703544f4e",
+          "type": "speak",
+          "data": {
+            "randomize": false,
+            "dialogs": [
+              {
+                "voice": "default",
+                "content": "Okay..."
+              }
+            ],
+            "ports": [
+              {
+                "type": "",
+                "target": "6003940b994f37c8ee37d68b",
+                "id": "6003b1eb532ca30703544f51"
+              }
+            ]
+          }
+        }
+      },
+      "variables": [],
+      "children": [],
+      "name": "ROOT",
+      "versionID": "600391020b3adc00070016cc",
+      "creatorID": 53776,
+      "modified": 1610874696
+    }
+  }
+}
