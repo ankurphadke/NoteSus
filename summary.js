@@ -1,6 +1,6 @@
 const deepai = require('deepai');
 
-deepai.setApiKey('7c0da8aa-d37b-4a6a-9fd0-bda506ec4b61');
+deepai.setApiKey('API-KEY');
 
 module.exports = {
 
