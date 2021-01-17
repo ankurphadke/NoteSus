@@ -1,7 +1,28 @@
+@font-face {
+    font-family: 'VCR_OSD_MONO';
+    src: url('/css/VCR_OSD_MONO_1.001.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html,
 body {
     margin: 0 auto;
     height: 100%;
+}
+
+.navbar-brand {
+    margin-right: 5px;
+}
+
+.navbar-brand img {
+    margin-right: 8px;
+}
+
+.navbar-brand span {
+    font-family: 'VCR_OSD_MONO';
+    font-size: 1.5rem;
+    margin-right: 2px;
 }
 
 .clear-header {

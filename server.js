@@ -39,16 +39,6 @@ app.post("/submit", async function(req, res) {
     res.redirect("/");
 });
 
-app.post("/addPhoto", async function(req, res) {
-    let id = await noteCount();
-    const title = req.body.noteTitle;
-    const text = req.body.noteBody;
-    const images = req.body.image_path;
-    const nlp = await features.NLP(text);
-    cockroach.newNote(id, title, text, nlp[0].categories, images, '', nlp[1].entities);
-    res.redirect("/note/" + id);
-});
-
 app.get('/note/:id', async function(req, res) {
     const note_id = req.params.id;
     const note_body = await cockroach.getText(note_id);
@@ -71,14 +61,6 @@ app.get("/delete/:id", function(req, res) {
     const note_id = req.params.id;
     deleteNote(note_id);
     res.redirect("/");
-});
-
-app.post("/updatePhotos/:id", async function(req, res) {
-    const id = req.params.id;
-    const text = req.body.noteBody;
-    const images = req.body.image_path;
-    cockroach.updateText(id, text, images);
-    res.redirect("/note/" + id);
 });
 
 app.post("/update/:id", async function(req, res) {

@@ -50,8 +50,7 @@ module.exports = {
 
     newNote: function(id, title, text, categories, images, summary, entities) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', 
-        [id, title, text, categories, images, summary, entities, time], (err, res) => {
+        pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', [id, title, text, categories, images, summary, entities, time], (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {
@@ -71,9 +70,9 @@ module.exports = {
         return res.rows[0].text;
     },
 
-    updateText: function(id, text) {
+    updateText: function(id, text, images) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        pool.query('UPDATE notes SET text = $1, date = $2 WHERE id = $3;', [text, time, id], (err, res) => {
+        pool.query('UPDATE notes SET text = $1, date = $2, images = $3 WHERE id = $4;', [text, time, images, id], (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {
@@ -96,13 +95,15 @@ module.exports = {
         var res = await pool.query('SELECT MAX(id) FROM notes');
         res = res.rows[0];
         console.log(res);
-        if (res.max == null) res = 0; else res = parseInt(res.max) + 1;
+        if (res.max == null) res = 0;
+        else res = parseInt(res.max) + 1;
         return res;
     },
 
     getNoteByTitle: async function(title) {
         var res = await pool.query('SELECT * FROM notes WHERE title = $1', [title]);
-        if (res.rows.length == 0) return null; else return res.rows[0];
+        if (res.rows.length == 0) return null;
+        else return res.rows[0];
     },
 
     manualQuery: async function(query) {
