@@ -52,7 +52,6 @@ app.post("/submit", async function(req, res) {
             text += " " + textFromImage;
         }
     }
-    console.log('nlp', nlp);
 
     if (nlp[0] == '' || nlp[0].categories.length <= 0) categ = '';
     else {
@@ -119,20 +118,42 @@ app.get("/delete/:id", function(req, res) {
 app.post("/update/:id", async function(req, res) {
     const id = req.params.id;
     var text = req.body.noteBody;
+    const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
     const images = req.body.image_path;
     var newImages = await getImages(id);
 
     newImages = images.split(newImages.images).join('').split(',');
-    console.log('new images: ', newImages);
+
     for (var i in newImages) {
         if (newImages[i] != '') {
             const textFromImage = await features.detectFullText(newImages[i]);
             text += " " + textFromImage;
         }
     }
-    cockroach.updateText(id, text, images, smry.output);
+
+    let categ;
+
+    if (nlp[0] == '' || nlp[0].categories.length <= 0) categ = '';
+    else {
+        categ = nlp[0].categories[0].name;
+        categ = categ.split('/').slice(1);
+        categ.forEach(category => {
+            if (categories.indexOf(category) === -1) categories.push(category);
+        });
+
+        categ = nlp[0].categories[0].name;
+    }
+
+    let links = "";
+    if (nlp[0] != '') {
+        nlp[1].entities.forEach(function(entry) {
+            if ("wikipedia_url" in entry.metadata) links += entry.metadata.wikipedia_url + ",";
+        });
+    }
+
+    cockroach.updateText(id, text, images, smry.output, categ, links);
     res.redirect("/");
 });
 

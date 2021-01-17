@@ -84,9 +84,9 @@ module.exports = {
         return res.rows[0].text;
     },
 
-    updateText: function(id, text, images, summary) {
+    updateText: function(id, text, images, summary, categories, entities) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        pool.query('UPDATE notes SET text = $1, date = $2, images = $3, summary = $4 WHERE id = $5;', [text, time, images, summary, id], (err, res) => {
+        pool.query('UPDATE notes SET text = $1, date = $2, images = $3, summary = $4, categories = $5, entities = $6 WHERE id = $7;', [text, time, images, summary, categories, entities, id], (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {
