@@ -8,7 +8,13 @@
 
             <li class="nav-item">
                 <button id="addImage" class="btn btn-primary btn-file">
-                    Add Illustration
+                    Add Image
+                </button>
+            </li>
+
+            <li class="nav-item">
+                <button id="summarize" class="btn btn-primary btn-file">
+                    <i class="fa fa-bars" aria-hidden="true"></i> Summarize
                 </button>
             </li>
 
@@ -112,6 +118,11 @@
         //    let text = editor.getText();
         //    updateText(1, text);
         //});
+
+        // Summarize
+        document.getElementById("summarize").addEventListener('click', function() {
+            window.alert("<%- summary %>");
+        });
 
         // Note Submission
         document.getElementById("submitNote").addEventListener('click', function() {
