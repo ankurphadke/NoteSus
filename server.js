@@ -5,6 +5,7 @@ const request = require('request');
 const fs = require('fs');
 const cockroach = require('./crud');
 const features = require('./features');
+const summary = require('./summary');
 const ejs = require("ejs");
 const _ = require("lodash");
 const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
@@ -35,7 +36,9 @@ app.post("/submit", async function(req, res) {
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
     const nlp = await features.NLP(text);
-    cockroach.newNote(id, title, text, nlp[0].categories, '', '', nlp[1].entities);
+    const smry = summary.summarize(text);
+    console.log('Summary', smry);
+    cockroach.newNote(id, title, text, nlp[0].categories, '', smry, nlp[1].entities);
     res.redirect("/");
 });
 
