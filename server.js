@@ -70,7 +70,6 @@ app.get('/note/:id', async function(req, res) {
     const images = note.images.split(",");
     const summary = note.summary;
     const time = note.date;
-    console.log(note.categories);
     res.render("view_note", {
         id: note_id,
         body: body,
