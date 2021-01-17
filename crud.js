@@ -53,6 +53,11 @@ module.exports = {
         return res.rows;
     },
 
+    searchText: async function(query) {
+        const res = await pool.query("SELECT * FROM notes WHERE text like '%" + query + "%';");
+        return res.rows;
+    },
+
     newNote: function(id, title, text, categories, images, summary, entities) {
         const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
         pool.query('INSERT INTO notes VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', [id, title, text, categories, images, summary, entities, time], (err, res) => {

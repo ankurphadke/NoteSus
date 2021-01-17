@@ -134,10 +134,10 @@ app.post("/search", function(req, res) {
     res.redirect("/search_results/" + req.body.query);
 });
 
-app.get("/search_results/:query", function(req, res) {
+app.get("/search_results/:query", async function(req, res) {
     const query = req.params.query;
     // Submit Query to Database Here
-    notes = [];
+    notes = await cockroach.searchText(query);
     res.render("search_result", {
         query: query,
         notes: notes,
