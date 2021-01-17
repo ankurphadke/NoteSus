@@ -46,11 +46,18 @@
                             <h5 class="card-title">
                                 <%= note.title %>
                             </h5>
-                            <p class="card-text mt-2 text-black-50">
-                                <%= note.text.substring(0, 128).replace(/<[^>]*>?/gm, ' ') %>
+                            <p class="card-text mt-2 text-black-50" style="margin-bottom: 10px;">
+                                <%= note.text.substring(0, 75).replace(/<[^>]*>?/gm, ' ') %>
                             </p>
+
+
                             <a href="/note/<%= note.id %>" class="card-link">Open</a>
                             <a href="/delete/<%= note.id %>" class="card-link" id="delete" onclick="return confirm('Are you sure you want to delete this note? ');">Delete</a>
+
+                            <footer class="blockquote-footer" style="margin-top: 20px;">
+                                <%- note.categories %>
+                            </footer>
+
                         </div>
 
                     </div>
