@@ -54,7 +54,7 @@ module.exports = {
     },
 
     searchText: async function(query) {
-        const res = await pool.query("SELECT * FROM notes WHERE text like '%" + query + "%';");
+        const res = await pool.query("SELECT * FROM notes WHERE text like '%" + query + "%' OR title like '%" + query + "%';");
         return res.rows;
     },
 
