@@ -37,7 +37,8 @@ app.post("/submit", async function(req, res) {
     const text = req.body.noteBody;
     const images = req.body.image_path;
     const nlp = await features.NLP(text);
-    const smry = summary.summarize(text);
+    const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
+    const smry = summary.summarize(textNoHTML);
     console.log('Summary', smry);
     cockroach.newNote(id, title, text, nlp[0].categories, images, smry, nlp[1].entities);
     res.redirect("/");
