@@ -8,7 +8,7 @@ const features = require('./features');
 const summary = require('./summary');
 const ejs = require("ejs");
 const _ = require("lodash");
-const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
+const { deleteNote, manualQuery, getNote, noteCount, getImages } = require('./crud');
 const { Console } = require('console');
 const { query } = require('express');
 
@@ -37,14 +37,24 @@ app.get("/new_note", function(req, res) {
 app.post("/submit", async function(req, res) {
     let id = await noteCount();
     const title = req.body.noteTitle;
-    const text = req.body.noteBody;
+    var text = req.body.noteBody;
     const images = req.body.image_path;
     const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
 
     let categ;
-    if (nlp[0].categories.length <= 0) categ = '';
+
+    if (images != "") {
+        var urls = images.split(',');
+        for(var i in urls) {
+            const textFromImage = await features.detectFullText(urls[i]);
+            text += " " + textFromImage;
+        }
+    }
+    console.log('nlp', nlp);
+
+    if (nlp[0] == '' || nlp[0].categories.length <= 0) categ = '';
     else {
         categ = nlp[0].categories[0].name;
         categ = categ.split('/').slice(1);
@@ -56,9 +66,11 @@ app.post("/submit", async function(req, res) {
     }
 
     let links = "";
-    nlp[1].entities.forEach(function(entry) {
-        if ("wikipedia_url" in entry.metadata) links += entry.metadata.wikipedia_url + ",";
-    });
+    if (nlp[0] != '') {
+        nlp[1].entities.forEach(function(entry) {
+            if ("wikipedia_url" in entry.metadata) links += entry.metadata.wikipedia_url + ",";
+        });
+    }
 
     cockroach.newNote(id, title, text, categ, images, smry.output, links);
     res.redirect("/");
@@ -106,10 +118,20 @@ app.get("/delete/:id", function(req, res) {
 
 app.post("/update/:id", async function(req, res) {
     const id = req.params.id;
-    const text = req.body.noteBody;
+    var text = req.body.noteBody;
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
     const images = req.body.image_path;
+    var newImages = await getImages(id);
+
+    newImages = images.split(newImages.images).join('').split(',');
+    console.log('new images: ', newImages);
+    for (var i in newImages) {
+        if (newImages[i] != '') {
+            const textFromImage = await features.detectFullText(newImages[i]);
+            text += " " + textFromImage;
+        }
+    }
     cockroach.updateText(id, text, images, smry.output);
     res.redirect("/");
 });

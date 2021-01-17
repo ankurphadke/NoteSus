@@ -3,7 +3,7 @@ var async = require('async');
 
  module.exports = {
 
-    detectFullText : async function (filePath, callback) {
+    detectFullText : async function (filePath) {
 
         // Imports the Google Cloud client library
         const vision = require('@google-cloud/vision');
@@ -14,7 +14,8 @@ var async = require('async');
         // Read a local image as a text document
         const [result] = await client.documentTextDetection(filePath);
         const fullTextAnnotation = result.fullTextAnnotation.text;
-        callback(null, fullTextAnnotation);
+        console.log('lol' , fullTextAnnotation);
+        return fullTextAnnotation;
     },
 
     NLP : async function (str) {

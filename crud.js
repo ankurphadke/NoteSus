@@ -69,6 +69,11 @@ module.exports = {
         });
     },
 
+    getImages: async function(id) {
+        const res = await pool.query('SELECT images FROM notes WHERE id = $1;', [id]);
+        return res.rows[0];
+    },
+
     getNote: async function(id) {
         const res = await pool.query('SELECT * FROM notes WHERE id = $1;', [id]);
         return res.rows[0];
