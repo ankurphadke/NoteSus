@@ -35,8 +35,18 @@ app.post("/submit", async function(req, res) {
     const title = req.body.noteTitle;
     const text = req.body.noteBody;
     const nlp = await features.NLP(text);
-    cockroach.newNote(id, title, text, nlp[0].categories, ' ', ' ', nlp[1].entities);
+    cockroach.newNote(id, title, text, nlp[0].categories, '', '', nlp[1].entities);
     res.redirect("/");
+});
+
+app.post("/addPhoto", async function(req, res) {
+    let id = await noteCount();
+    const title = req.body.noteTitle;
+    const text = req.body.noteBody;
+    const images = req.body.image_path;
+    const nlp = await features.NLP(text);
+    cockroach.newNote(id, title, text, nlp[0].categories, images, '', nlp[1].entities);
+    res.redirect("/note/" + id);
 });
 
 app.get('/note/:id', async function(req, res) {
@@ -52,10 +62,9 @@ app.get('/noteByTitle/:title', async function(req, res) {
     var note = await cockroach.getNoteByTitle(req.params.title);
     if (note == null) {
         note = "There is no note with this title";
-    }
-    else note = note.text.replace(/<\/?[^>]+(>|$)/g, " ");
+    } else note = note.text.replace(/<\/?[^>]+(>|$)/g, " ");
     res.setHeader('Content-Type', 'application/json');
-    res.send({body: note});
+    res.send({ body: note });
 });
 
 app.get("/delete/:id", function(req, res) {
@@ -64,13 +73,22 @@ app.get("/delete/:id", function(req, res) {
     res.redirect("/");
 });
 
+app.post("/updatePhotos/:id", async function(req, res) {
+    const id = req.params.id;
+    const text = req.body.noteBody;
+    const images = req.body.image_path;
+    cockroach.updateText(id, text, images);
+    res.redirect("/note/" + id);
+});
+
 app.post("/update/:id", async function(req, res) {
     const id = req.params.id;
     const text = req.body.noteBody;
-    cockroach.updateText(id, text);
+    const images = req.body.image_path;
+    cockroach.updateText(id, text, images);
     res.redirect("/");
 });
 
-app.listen("3000", '192.168.0.113', function() {
+app.listen("3000", function() {
     console.log("Server is running on port 3000");
 });
