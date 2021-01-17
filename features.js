@@ -14,7 +14,6 @@ var async = require('async');
         // Read a local image as a text document
         const [result] = await client.documentTextDetection(filePath);
         const fullTextAnnotation = result.fullTextAnnotation.text;
-        console.log(fullTextAnnotation);
         callback(null, fullTextAnnotation);
     },
 

@@ -10,12 +10,10 @@ module.exports = {
             resp = await deepai.callStandardApi("summarization", {
                 text: txt,
             });
-            resp = resp.output
         }
         catch (e) {
             resp = ''
         }
-        console.log(resp);
         return resp;
     }
 }

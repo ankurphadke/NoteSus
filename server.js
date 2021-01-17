@@ -34,9 +34,12 @@ app.post("/submit", async function(req, res) {
     const images = req.body.image_path;
     const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
-    const smry = summary.summarize(textNoHTML);
+    const smry = await summary.summarize(textNoHTML);
     console.log('Summary', smry);
-    cockroach.newNote(id, title, text, nlp[0].categories, images, smry, nlp[1].entities);
+    console.log(nlp[0].categories);
+    var categories;
+    if (nlp[0].categories.length <= 0) categories = ''; else categories = nlp[0].categories[0].name.replace(/\//g, ',').slice(1);
+    cockroach.newNote(id, title, text, categories, images, smry.output, nlp[1].entities);
     res.redirect("/");
 });
 
@@ -46,6 +49,7 @@ app.get('/note/:id', async function(req, res) {
     const body = note.text;
     const images = note.images.split(",");
     const time = note.date;
+    console.log(note.categories);
     res.render("view_note", {
         id: note_id,
         body: body,
