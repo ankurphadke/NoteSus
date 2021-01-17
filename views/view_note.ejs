@@ -39,6 +39,14 @@
     </nav>
 
     <div id="popup" class="modal-box">
+        <div class="modal-header">
+            <% links.forEach( function(link) { %>
+                <a href="<%- link %>" id="delete">
+                    <%- link %>
+                </a>
+                <% }); %>
+
+        </div>
         <div class="modal-body">
             <h3>Summary</h3>
             <p>
