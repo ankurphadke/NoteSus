@@ -9,6 +9,7 @@ const summary = require('./summary');
 const ejs = require("ejs");
 const _ = require("lodash");
 const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
+const { Console } = require('console');
 
 const app = express();
 const categories = ["All"];
@@ -40,13 +41,17 @@ app.post("/submit", async function(req, res) {
     const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
+
     let categ;
     if (nlp[0].categories.length <= 0) categ = '';
     else {
-        categories.concat(nlp[0].categories[0].name.split('/').slice(1));
-        console.log(categories);
-        categ = nlp[0].categories[0].name.split(/\//g, ',').slice(1);
-        console.log(categ);
+        categ = nlp[0].categories[0].name;
+        categ = categ.split('/').slice(1);
+        categ.forEach(category => {
+            if (categories.indexOf(category) === -1) categories.push(category);
+        });
+
+        categ = nlp[0].categories[0].name;
     }
 
     cockroach.newNote(id, title, text, categ, images, smry.output, nlp[1].entities);
