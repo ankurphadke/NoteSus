@@ -14,7 +14,7 @@
 
             <li class="nav-item">
                 <button id="summarize" class="btn btn-primary btn-file">
-                    <a href="#ex1" rel="modal:open" class="text-white" style="text-decoration: none;">
+                    <a class="js-open-modal text-white" style="text-decoration: none;" href="#" data-modal-id="popup">
                         <i class="fa fa-bars" aria-hidden="true"></i> Summarize
                     </a>
                 </button>
@@ -36,12 +36,50 @@
         </ul>
     </nav>
 
-    <div id="ex1" class="modal">
-        <p>
-            <%- summary %>
-        </p>
-        <a href="#" rel="modal:close">Close</a>
+    <div id="popup" class="modal-box">
+        <div class="modal-body">
+            <h3>Summary</h3>
+            <p>
+                <%= summary %>
+            </p>
+        </div>
+        <a href="#" class="js-modal-close close">Back To Editing</a>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(function() {
+
+            var appendthis = ("<div class='modal-overlay js-modal-close'></div>");
+
+            $('a[data-modal-id]').click(function(e) {
+                e.preventDefault();
+                $("body").append(appendthis);
+                $(".modal-overlay").fadeTo(500, 0.7);
+                //$(".js-modalbox").fadeIn(500);
+                var modalBox = $(this).attr('data-modal-id');
+                $('#' + modalBox).fadeIn($(this).data());
+            });
+
+
+            $(".js-modal-close, .modal-overlay").click(function() {
+                $(".modal-box, .modal-overlay").fadeOut(500, function() {
+                    $(".modal-overlay").remove();
+                });
+            });
+
+            $(window).resize(function() {
+                $(".modal-box").css({
+                    top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+                    left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+                });
+            });
+
+            $(window).resize();
+
+        });
+    </script>
 
     <!-- Text Editor -->
     <div class="text-editor">

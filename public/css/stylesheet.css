@@ -113,3 +113,29 @@ i {
 #delete {
     float: right;
 }
+
+.modal-box {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: 98%;
+    background: white;
+    border-bottom: 1px solid #aaa;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-clip: padding-box;
+}
+
+.modal-box header,
+.modal-box .modal-header {
+    padding: 1.25em 1.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-box header h3,
+.modal-box header h4,
+.modal-box .modal-header h3,
+.modal-box .modal-header h4 {
+    margin: 0;
+}
