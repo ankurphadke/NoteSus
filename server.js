@@ -109,7 +109,7 @@ app.post("/update/:id", async function(req, res) {
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
     const images = req.body.image_path;
-    cockroach.updateText(id, text, images, smry);
+    cockroach.updateText(id, text, images, smry.output);
     res.redirect("/");
 });
 
