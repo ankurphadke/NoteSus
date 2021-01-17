@@ -67,6 +67,15 @@ app.get('/noteByTitle/:title', async function(req, res) {
     res.send({ body: note });
 });
 
+app.get('/summary/:title', async function(req, res) {
+    var note = await cockroach.getNoteByTitle(req.params.title);
+    if (note == null) {
+        note = "There is no note with this title";
+    } else note = note.summary;
+    res.setHeader('Content-Type', 'application/json');
+    res.send({ body: note });
+});
+
 app.get("/delete/:id", function(req, res) {
     const note_id = req.params.id;
     deleteNote(note_id);
