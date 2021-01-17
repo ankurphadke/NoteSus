@@ -144,3 +144,17 @@ i {
     background-color: bisque;
     height: 60%;
 }
+
+.actions {
+    display: inline-flex;
+    float: right;
+}
+
+.actions form {
+    display: inline-flex;
+    margin-right: 10px;
+}
+
+.actions form {
+    padding: 5px;
+}

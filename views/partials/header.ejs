@@ -38,7 +38,13 @@
                 <span class="text-danger">Note</span><span class="text-warning">Sus</span>
             </a>
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav actions">
+                <li class="nav-item" style="font-size: 1.2rem;">
+                    <form class="form-inline" method="POST" action="/search">
+                        <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    </form>
+                </li>
                 <li class="nav-item" style="font-size: 1.2rem;">
                     <a class="nav-link btn-primary text-white p-2" href="/new_note" aria-expanded="false">
                         <i class="fa fa-sticky-note" aria-hidden="true"></i> New Note

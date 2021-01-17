@@ -1,0 +1,36 @@
+<%- include("partials/header"); -%>
+
+    <div class="card-group">
+        <h1>
+            Search Results for:
+            <%- query %>
+        </h1>
+
+        <div class="deck w-100 m-3" id="deck">
+
+            <% notes.forEach( function(note) { %>
+                <a href="/note/<%= note.id %>">
+                    <div class="card mb-3 width-18">
+                        <div class="card-header">
+                            <%= note.date.toLocaleString() %>
+                        </div>
+                        <div class="card-body h-100">
+                            <h5 class="card-title">
+                                <%= note.title %>
+                            </h5>
+                            <p class="card-text mt-2 text-black-50">
+                                <%= note.text.substring(0, 128).replace(/<[^>]*>?/gm, ' ') %>
+                            </p>
+                            <a href="/note/<%= note.id %>" class="card-link">Open</a>
+                            <a href="/delete/<%= note.id %>" class="card-link" id="delete" onclick="return confirm('Are you sure you want to delete this note? ');">Delete</a>
+                        </div>
+
+                    </div>
+                </a>
+
+                <% }); %>
+
+        </div>
+    </div>
+
+    <%- include("partials/footer"); -%>

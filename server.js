@@ -10,6 +10,7 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const { deleteNote, manualQuery, getNote, noteCount } = require('./crud');
 const { Console } = require('console');
+const { query } = require('express');
 
 const app = express();
 const categories = ["All"];
@@ -127,6 +128,20 @@ app.get("/categories/:category", async function(req, res) {
         active: active,
         empty: "",
     });
+});
+
+app.post("/search", function(req, res) {
+    res.redirect("/search_results/" + req.body.query);
+});
+
+app.get("/search_results/:query", function(req, res) {
+    const query = req.params.query;
+    // Make Query Call Here
+    notes = [];
+    res.render("search_result", {
+        query: query,
+        notes: notes,
+    })
 });
 
 app.listen("3000", function() {
