@@ -40,16 +40,14 @@ app.post("/submit", async function(req, res) {
     const nlp = await features.NLP(text);
     const textNoHTML = text.replace(/<\/?[^>]+(>|$)/g, " ");
     const smry = await summary.summarize(textNoHTML);
-    let categ;
-    if (nlp[0].categories.length <= 0) categ = '';
-    else {
-        categories.concat(nlp[0].categories[0].name.split('/').slice(1));
-        console.log(categories);
-        categ = nlp[0].categories[0].name.split(/\//g, ',').slice(1);
-        console.log(categ);
-    }
-
-    cockroach.newNote(id, title, text, categ, images, smry.output, nlp[1].entities);
+    var categories;
+    if (nlp[0].categories.length <= 0) categories = '';
+    else categories = nlp[0].categories[0].name.replace(/\//g, ',').slice(1);
+    let links = "";
+    nlp[1].entities.forEach(function(entry) {
+        if ("wikipedia_url" in entry.metadata) links += entry.metadata.wikipedia_url + ",";
+    });
+    cockroach.newNote(id, title, text, categories, images, smry.output, links);
     res.redirect("/");
 });
 
