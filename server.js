@@ -88,6 +88,7 @@ app.get('/note/:id', async function(req, res) {
         images: images,
         summary: summary,
         time: time,
+        links: note.entities.split(','),
     });
 });
 
