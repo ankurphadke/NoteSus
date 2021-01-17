@@ -136,7 +136,7 @@ app.post("/search", function(req, res) {
 
 app.get("/search_results/:query", function(req, res) {
     const query = req.params.query;
-    // Make Query Call Here
+    // Submit Query to Database Here
     notes = [];
     res.render("search_result", {
         query: query,
