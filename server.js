@@ -48,6 +48,16 @@ app.get('/note/:id', async function(req, res) {
     });
 });
 
+app.get('/noteByTitle/:title', async function(req, res) {
+    var note = await cockroach.getNoteByTitle(req.params.title);
+    if (note == null) {
+        note = "There is no note with this title";
+    }
+    else note = note.text.replace(/<\/?[^>]+(>|$)/g, " ");
+    res.setHeader('Content-Type', 'application/json');
+    res.send({body: note});
+});
+
 app.get("/delete/:id", function(req, res) {
     const note_id = req.params.id;
     deleteNote(note_id);

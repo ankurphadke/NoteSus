@@ -100,6 +100,11 @@ module.exports = {
         return res;
     },
 
+    getNoteByTitle: async function(title) {
+        var res = await pool.query('SELECT * FROM notes WHERE title = $1', [title]);
+        if (res.rows.length == 0) return null; else return res.rows[0];
+    },
+
     manualQuery: async function(query) {
         const res = await pool.query(query);
         return res;
