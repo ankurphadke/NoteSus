@@ -11,22 +11,18 @@ body {
     height: 100%;
 }
 
-.navbar-brand {
-    margin-right: 5px;
-}
-
 .navbar-brand img {
     margin-right: 8px;
 }
 
 .navbar-brand span {
     font-family: 'VCR_OSD_MONO';
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     margin-right: 2px;
 }
 
 .clear-header {
-    min-height: 65px;
+    min-height: 85px;
 }
 
 .card {
@@ -102,4 +98,8 @@ body {
     margin-left: 8px;
     width: 250px;
     background: transparent;
+}
+
+i {
+    margin-right: 3px;
 }
