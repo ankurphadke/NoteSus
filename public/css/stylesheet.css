@@ -141,8 +141,9 @@ i {
 }
 
 #popup {
-    background-color: bisque;
-    height: 60%;
+    background-color: rgba(255, 255, 136);
+    border-radius: 10px;
+    box-shadow: none;
 }
 
 .actions {
