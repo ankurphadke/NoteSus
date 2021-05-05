@@ -1,5 +1,6 @@
-# banana-note
-HTN 2020
+# NoteSus
+
+**Presentation video:** https://devpost.com/software/notesus
 
 Before running the program-
 1. Setup CockroachDB
